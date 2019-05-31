@@ -1,0 +1,221 @@
+﻿@model IEnumerable<MVCEmployee.Models.Employee>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-12">
+    <section class="card card-default">
+        <header class="card-header">
+            <div class="col-md-9">
+                Employee Report
+            </div>
+
+        </header>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Employee Name:</label>
+                            <div class="col-md-2">
+                                <div class='input-group'>
+                                    <input type="text" class="form-control input-sm" id="txt_empname" placeholder="Enter 1 Character" runat="server" />
+                                    <input type="hidden" class="form-control input-sm" id="txt_empnameid" runat="server" />
+                                </div>
+                            </div>
+                            <label class="col-md-2 control-label">Skill:</label>
+                            <div class="col-md-2">
+
+                                <input type="text" class="form-control input-sm" id="txt_skill" placeholder="Enter 1 Character" runat="server" />
+                                <input type="hidden" class="form-control input-sm" id="txt_skillid" runat="server" />
+                            </div>
+                            <label class="col-md-2 control-label">Location:</label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control input-sm" id="txt_location" placeholder="Enter 1 Character" runat="server" />
+                                <input type="hidden" class="form-control input-sm" id="txt_locationid" runat="server" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="col-md-12 text-center">
+                    <input value="Show" class="btn btn-inline" name="Command" id="btn_Show" type="submit">
+                    <input value="Clear" class="btn btn-inline" name="Command" id="btn_clear" type="submit">
+                </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="Div4" class="panel panel-default panel-border-top" runat="server">
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <div id="div_display">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script type="text/javascript">
+    var EmpJson, skillJSon, LocJSon, ReportJson;
+    $(document).ready(function () {
+
+        getEmployee();
+    });
+
+    function getEmployee() {
+        $.ajax({
+            url: "/Report/EmployeeList",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                // console.log("==========", JSON.stringify(data));
+                EmpJson = JSON.stringify(data);
+                assignEmployee(EmpJson);
+            }
+        })
+    }
+
+    function assignEmployee(EmpJson) {
+
+        var data = [{ "id": 1, "label": "Admin" }, { "id": 2, "label": "Pradip Sutar" }, { "id": 3, "label": "harshraj sutar" }, { "id": 4, "label": "rohit s. more" }]
+
+        $('#txt_empname').autocomplete({
+            autoFocus: true,
+            minLength: 1,
+            source: data,
+            select: function (event, ui) {
+                event.preventDefault();
+                $('#txt_empname').val(ui.item.label);
+                $('#txt_empnameid').val(ui.item.id);
+
+                return false;
+            },
+
+        })
+
+        getSkill();
+    }
+
+    function getSkill() {
+        $.ajax({
+            url: "/Employee/SkilList",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                //console.log("==========", JSON.stringify(data));
+                skillJSon = JSON.stringify(data);
+                assignSkill(skillJSon);
+            }
+        })
+    }
+
+    function assignSkill(skillJSon) {
+
+        var data = [{ "id": 1, "label": "ASP .NET" }, { "id": 2, "label": "C#" }, { "id": 3, "label": "ASP .NET AND MVC" }, { "id": 4, "label": "JQUERY" }, { "id": 5, "label": "ANGULAR JS" }]
+
+        $('#txt_skill').autocomplete({
+            autoFocus: true,
+            minLength: 1,
+            source: data,
+            select: function (event, ui) {
+                event.preventDefault();
+                $('#txt_skill').val(ui.item.label);
+                $('#txt_skillid').val(ui.item.id);
+
+                return false;
+            },
+
+        })
+
+        getLocation();
+    }
+
+    function getLocation() {
+        $.ajax({
+            url: "/Report/LocationList",
+            type: "POST",
+            dataType: "json",
+            success: function (data) {
+                //console.log("==========", JSON.stringify(data));
+                LocJSon = JSON.stringify(data);
+                assignLocation(LocJSon);
+            }
+        })
+    }
+
+    function assignLocation(LocJSon) {
+
+        var data = [{ "id": 1, "label": "Pune" }, { "id": 2, "label": "Mumbai" }, { "id": 3, "label": "Kolahpur" }]
+
+        $('#txt_location').autocomplete({
+            autoFocus: true,
+            minLength: 1,
+            source: data,
+            select: function (event, ui) {
+                event.preventDefault();
+                $('#txt_location').val(ui.item.label);
+                $('#txt_locationid').val(ui.item.id);
+
+                return false;
+            },
+
+        })
+
+
+    }
+
+    $("#btn_clear").click(function () {
+        window.location.replace('/Report/List');
+    });
+
+    $("#btn_Show").click(function () {
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Report/getReportData",
+                datatype: "Json",
+                data: { empid: $('#txt_empnameid').val(), skillid: $('#txt_skillid').val(), locid: $('#txt_locationid').val() },
+                success: function (data) {
+
+                    var row = "";
+                    row = "<table id='tbl_rptdata' runat='server'  border=1 class='display nowrap dataTable'>";
+                    row += "<thead style='background: aliceblue;'><tr><th>SR.NO.</th><th>EMP NAME</th><th>USER ID</th><th>LOCATION</th><th>Age</th><th>MARTIAL STATUS</th><th>Salary</th><th>Skill</th><th>RelevantExprience</th><th>ISACTIVE</th><th>CREATEDBY</th><th>CREATEDDATE</th></tr ></thead > <tbody>";
+                    $.each(data, function (index, page) {
+                        row += "<tr id=" + (index + 1) + "><td>" + (index + 1) + "</td><td>" + page.EMP_NAME + "</td><td>" + page.USER_ID + "</td><td>" + page.LOCATION + "</td><td>" + page.Age + "</td><td>" + page.MARTIAL_STATUS + "</td><td>" + page.Salary + "</td><td>" + page.Skill + "</td><td>" + page.RelevantExprience + "</td><td>" + page.ISACTIVE + "</td><td>" + page.CREATEDBY + "</td><td>" + page.CREATEDDATE + "</td>";
+                        row += "</tr>";
+                    });
+                    row += "</tbody></table>";
+                    $("#div_display").empty();
+                    $("#div_display").html(row);
+                    $("#tbl_rptdata").dataTable({
+                        dom: 'Bfrtip', "bSort": true,
+                        buttons: [
+                            'excel'
+                        ]
+                    });
+
+                }
+            });
+        });
+
+
+    });
+
+</script>

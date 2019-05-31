@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TEST" Class="TESTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=Mars\flologic2;Initial Catalog=TEST;User ID=sa" SettingsObjectName="MVCEmployee.Properties.Settings" SettingsPropertyName="TESTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TBLLOCATION" Member="TBLLOCATIONs">
+    <Type Name="TBLLOCATION">
+      <Column Name="PK_LOC_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="LOCATION" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ISACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBLSKILL" Member="TBLSKILLs">
+    <Type Name="TBLSKILL">
+      <Column Name="PK_SKILL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SKILL_NAME" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="ISACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBLEMPLOYEE" Member="TBLEMPLOYEEs">
+    <Type Name="TBLEMPLOYEE">
+      <Column Name="PK_EMP_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EMP_NAME" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="AGE" Type="System.Decimal" DbType="Decimal(18,1)" CanBeNull="true" />
+      <Column Name="MARTIAL_STATUS" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LOCATION" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SALARY" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="USER_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ISACTIVE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PASSWORD" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CREATED_BY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="CREATED_DATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SKILL_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RELEVANT_EXPR" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

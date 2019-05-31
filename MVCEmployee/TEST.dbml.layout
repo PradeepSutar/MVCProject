@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="TEST">
+  <DataContextMoniker Name="/TESTDataContext" />
+  <nestedChildShapes>
+    <classShape Id="defef714-f184-48c4-ac57-22a3c0c633d5" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/TESTDataContext/TBLLOCATION" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9158ee99-7b09-4064-97f4-2a633d08c66b" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="71e4a21e-730a-4b61-8571-7a3f2a0b126a" absoluteBounds="6.875, 1, 2, 1.3862939453125">
+      <DataClassMoniker Name="/TESTDataContext/TBLSKILL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7997f5f4-c4c4-4941-b01c-b16df080d69d" absoluteBounds="6.89, 1.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="101f7df0-131a-4e98-b4cb-4d47fa0dd5ad" absoluteBounds="4.875, 2.5, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/TESTDataContext/TBLEMPLOYEE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e64a63be-1808-4cf7-be18-4edb796443c4" absoluteBounds="4.89, 2.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

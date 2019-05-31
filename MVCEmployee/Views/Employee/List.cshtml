@@ -1,0 +1,100 @@
+﻿@model IEnumerable<MVCEmployee.Models.Employee>
+
+@{
+    ViewBag.Title = "Employee List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-md-12">
+    <section class="card card-default">
+        <header class="card-header">
+            <div class="col-md-9">
+                Employee List
+            </div>
+            <div class="col-md-3" style="text-align: right">
+                @Html.ActionLink("Add New", "Create")
+            </div>
+        </header>
+        <div class="card-block">
+            <div class="col-md-12 text-center">
+                <span id="Error_Message" class="text-danger">@TempData["Response_Message"]</span>
+            </div>
+            <table class="display nowrap dataTable" border="1" id="tbl_emp">
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EMP_NAME)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.USER_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LOCATION)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Age)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MARTIAL_STATUS)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Salary)
+                        </th>
+
+                        <th>Deactive/Active</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        int index = 0;
+                        foreach (var item in Model)
+                        {
+                            index = index + 1;
+                            <tr>
+                                <td style="text-align:center">
+                                    @Convert.ToString(index)
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.EMP_NAME, "Edit", new { id = item.PK_EMP_ID })
+
+                                </td>
+                                <td>
+                                    @Html.ActionLink(item.USER_ID, "Edit", new { id = item.PK_EMP_ID })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LOCATION)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.MARTIAL_STATUS)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Salary)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ISACTIVE)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.PK_EMP_ID })
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tbl_emp").dataTable();
+    });
+</script>

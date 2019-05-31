@@ -1,0 +1,83 @@
+﻿@model MVCEmployee.Models.LoginModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v3.11.1, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="assets/images/logo.png" type="image/x-icon">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="~/assets/bootstrap-material-design-font/css/material.css">
+    <link rel="stylesheet" href="~/assets/tether/tether.min.css">
+    <link rel="stylesheet" href="~/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="~/assets/theme/css/style.css">
+    <link rel="stylesheet" href="~/assets/mobirise/css/mbr-additional.css" type="text/css">
+    <title>LOGIN</title>
+</head>
+<body>
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <section>
+            <div class="page-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <section class="card card-default">
+                                <header class="card-header">
+                                    <font style="font-size:large">Login</font>
+                                </header>
+                                <div class="card-block">
+                                    <div class="col-md-12 text-center">
+                                        <span id="Error_Message" class="text-danger">@TempData["Response_Message"]</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <fieldset class="form-group">
+                                                <label class="col-md-5">Username</label>
+                                                <div class="col-md-7">
+                                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control mandatory" })
+                                                    @Html.ValidationMessageFor(m => m.UserName)
+                                                </div>
+                                            </fieldset>
+                                            <br />
+                                            <fieldset class="form-group">
+                                                <label class="col-md-5">Password</label>
+                                                <div class="col-md-7">
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control mandatory" })
+                                                    @Html.ValidationMessageFor(m => m.Password)
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="col-md-12 text-center">
+                                        <input type="submit" value="Log in" class="btn btn-inline" />
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    }
+    <script src="~/assets/web/assets/jquery/jquery.min.js"></script>
+    <script src="~/assets/tether/tether.min.js"></script>
+    <script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/assets/dropdown/js/script.min.js"></script>
+</body>
+</html>

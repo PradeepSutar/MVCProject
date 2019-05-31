@@ -1,0 +1,188 @@
+﻿@model MVCEmployee.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/assets/css/jquery-ui.css" rel="stylesheet" />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="col-md-12">
+        <section class="card card-default">
+            <header class="card-header">
+                Employee
+            </header>
+            <div class="card-block">
+                <div class="row">
+                    <div class="form-group">
+
+                        <div class="col-md-2 text-right">
+                            @Html.HiddenFor(model => model.CREATEDBY)
+                            @Html.HiddenFor(model => model.Skillid)
+                            @Html.LabelFor(model => model.EMP_NAME)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.EMP_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EMP_NAME, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.USER_ID)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.USER_ID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.USER_ID, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.LOCATION)
+                        </div>
+                        <div class="col-md-2">
+                            @*@Html.EditorFor(model => model.LOCATION, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LOCATION, "", new { @class = "text-danger" })*@
+                            @Html.DropDownListFor(model => model.LOCATIONID, Model.LocList, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.LOCATIONID)
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 text-right">
+                        @Html.LabelFor(model => model.Age)
+                    </div>
+
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-2 text-right">
+                        @Html.LabelFor(model => model.MARTIAL_STATUS)
+                    </div>
+                    <div class="col-md-2">
+                        @*@Html.EditorFor(model => model.MARTIAL_STATUS, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MARTIAL_STATUS, "", new { @class = "text-danger" })*@
+                        @Html.DropDownListFor(model=>model.MARTIAL_STATUS, new List<SelectListItem>()
+                                                   {
+                                                       new SelectListItem() { Text= "Married", Value = "Married" },
+                                                       new SelectListItem() { Text= "Single", Value = "Single", },
+
+                                                   }, "---Select One---", new { @class = "form-control mandatory" })
+                        @Html.ValidationMessageFor(model => model.MARTIAL_STATUS, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-2 text-right">
+                        @Html.LabelFor(model => model.Salary)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-12 text-center">
+                        <input value="Create" class="btn btn-inline" name="Command" type="submit">
+                        @Html.ActionLink("Back to List", "List")
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section class="card card-default">
+            <header class="card-header">
+                Skill
+            </header>
+            <div class="card-block">
+                <div class="row">
+                    <div class="form-group">
+
+
+                        <div class="col-md-2 text-right">
+                            @Html.HiddenFor(model => model.CREATEDBY)
+                            @Html.LabelFor(model => model.Skill)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.Skill, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Skill, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.RelevantExprience)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.RelevantExprience, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RelevantExprience, "", new { @class = "text-danger" })
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="col-md-12 text-center">
+                        <input value="Save" class="btn btn-inline" name="Command" type="submit">
+                        @Html.ActionLink("Back to List", "List")
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <script type="text/javascript">
+        var skillJSon = "", Skillid = 0, Skilllabel;
+        $(document).ready(function () {
+
+            getSkill();
+
+
+        })
+
+
+        function getSkill() {
+            $.ajax({
+                url: "/Employee/SkilList",
+                type: "POST",
+                dataType: "json",
+                success: function (data) {
+                    //console.log("==========", JSON.stringify(data));
+                    skillJSon = JSON.stringify(data);
+                    assignSkill(skillJSon);
+                }
+            })
+        }
+
+        function assignSkill(skillJSon) {
+
+            var data = [{ "id": 1, "label": "ASP .NET" }, { "id": 2, "label": "C#" }, { "id": 3, "label": "ASP .NET AND MVC" }, { "id": 4, "label": "JQUERY" }, { "id": 5, "label": "ANGULAR JS" }]
+
+            //$("#Skill").autocomplete({
+            //    source: data,
+            //    select: function (e, ui) {
+            //        e.preventDefault() // <--- Prevent the value from being inserted.
+            //        // $("#meta_search_ids").val(ui.item.value);
+
+            //        $(this).val(ui.item.label);
+            //    }
+            //});
+            $('#Skill').autocomplete({
+                autoFocus: true,
+                minLength: 0,
+                source: data,
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $('#Skill').val(ui.item.label);
+                    $('#Skillid').val(ui.item.id);
+
+                    return false;
+                },
+
+            })
+        }
+
+
+    </script>
+}

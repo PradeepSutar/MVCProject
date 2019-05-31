@@ -1,0 +1,101 @@
+﻿@model MVCEmployee.Models.Employee
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Are you sure you want to delete this?</h4>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="col-md-12">
+        <section class="card card-default">
+            <header class="card-header">
+                Employee
+            </header>
+            <div class="card-block">
+                <div class="row">
+                    <br />
+                    @Html.HiddenFor(model => model.CREATEDBY)
+                    @Html.HiddenFor(model => model.PK_EMP_ID)
+                    <div class="form-group">
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.EMP_NAME)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.EMP_NAME, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.EMP_NAME, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.USER_ID)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.USER_ID, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.USER_ID, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.LOCATION)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.LOCATION, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.LOCATION, "", new { @class = "text-danger" })
+                            @*@Html.DropDownListFor(model => model.LOCATIONID, Model.LocList, new { @class = "form-control mandatory" })
+                                @Html.ValidationMessageFor(model => model.LOCATIONID)*@
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="form-group">
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.Age)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.Age, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.MARTIAL_STATUS)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.MARTIAL_STATUS, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.MARTIAL_STATUS, "", new { @class = "text-danger" })
+                            @*@Html.DropDownListFor(model=>model.MARTIAL_STATUS, new List<SelectListItem>()
+                                                       {
+                                                           new SelectListItem() { Text= "Married", Value = "Married" },
+                                                           new SelectListItem() { Text= "Single", Value = "Single", },
+
+                                                       }, "---Select One---", new { @class = "form-control mandatory" })
+                                @Html.ValidationMessageFor(model => model.MARTIAL_STATUS, null, new { @class = "text-danger" })*@
+                        </div>
+
+                        <div class="col-md-2 text-right">
+                            @Html.LabelFor(model => model.Salary)
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.Salary, new { @class = "form-control mandatory" })
+                            @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center text-danger">
+                    @TempData["Response_Message"]
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="col-md-12 text-center">
+                    <input value="Delete" class="btn btn-inline" type="submit">
+                    @Html.ActionLink("Back to List", "List")
+                </div>
+            </div>
+        </section>
+    </div>
+}

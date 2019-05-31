@@ -1,0 +1,14 @@
+﻿1>------ Build started: Project: MVCEmployee, Configuration: Debug Any CPU ------
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(67,55,67,79): warning CS0472: The result of the expression is always 'false' since a value of type 'int' is never equal to 'null' of type 'int?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(71,48,71,65): warning CS0472: The result of the expression is always 'false' since a value of type 'int' is never equal to 'null' of type 'int?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(79,51,79,71): warning CS0472: The result of the expression is always 'false' since a value of type 'decimal' is never equal to 'null' of type 'decimal?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(83,52,83,73): warning CS0472: The result of the expression is always 'false' since a value of type 'int' is never equal to 'null' of type 'int?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(137,55,137,79): warning CS0472: The result of the expression is always 'false' since a value of type 'int' is never equal to 'null' of type 'int?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(141,48,141,65): warning CS0472: The result of the expression is always 'false' since a value of type 'int' is never equal to 'null' of type 'int?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(149,51,149,71): warning CS0472: The result of the expression is always 'false' since a value of type 'decimal' is never equal to 'null' of type 'decimal?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(190,30,190,32): warning CS0168: The variable 'ex' is declared but never used
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(294,52,294,73): warning CS0472: The result of the expression is always 'false' since a value of type 'int' is never equal to 'null' of type 'int?'
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(410,30,410,32): warning CS0168: The variable 'ex' is declared but never used
+1>D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\Controllers\EmployeeController.cs(483,30,483,32): warning CS0168: The variable 'ex' is declared but never used
+1>  MVCEmployee -> D:\Flologic\Projects\Development\My Work\MVCEmployee\MVCEmployee\bin\MVCEmployee.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
