@@ -109,7 +109,6 @@ namespace MVCEmployee.Controllers
             {
                 TESTDataContext sa = new TESTDataContext();
             
-
                 var list = (from v in sa.TBLEMPLOYEEs
                             join l in sa.TBLLOCATIONs on v.LOCATION equals l.PK_LOC_ID
                             from s in sa.TBLSKILLs.Where(p => v.SKILL_ID == p.PK_SKILL_ID).DefaultIfEmpty()
